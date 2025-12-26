@@ -63,9 +63,18 @@ export class HuggingFaceService {
         aiResponse = 'Sorry, I could not understand the response format.';
       }
 
-      // Remove the input text if it's included in the response
-      if (aiResponse.startsWith(message)) {
-        aiResponse = aiResponse.substring(message.length).trim();
+      // Clean up response: remove input text only if it's a clear prefix
+      // Check if the response starts with the input followed by a newline or space
+      const inputPrefix = message + '\n';
+      const inputPrefixSpace = message + ' ';
+      
+      if (aiResponse.startsWith(inputPrefix)) {
+        aiResponse = aiResponse.substring(inputPrefix.length).trim();
+      } else if (aiResponse.startsWith(inputPrefixSpace)) {
+        aiResponse = aiResponse.substring(inputPrefixSpace.length).trim();
+      } else if (aiResponse === message) {
+        // If the response is exactly the input, it's likely not a real response
+        aiResponse = "I'm not sure how to respond to that.";
       }
 
       // Add AI response to conversation history

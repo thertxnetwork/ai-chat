@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   timestamp: {
-    fontSize: 10,
+    fontSize: 11,
     marginTop: 4,
     opacity: 0.6,
   },

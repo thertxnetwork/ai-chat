@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+const MAX_MESSAGE_LENGTH = 500;
+
 interface ChatInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
@@ -38,7 +40,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }
             placeholder="Type your message..."
             placeholderTextColor="#999"
             multiline
-            maxLength={500}
+            maxLength={MAX_MESSAGE_LENGTH}
             editable={!disabled}
             onSubmitEditing={handleSend}
             blurOnSubmit={false}
