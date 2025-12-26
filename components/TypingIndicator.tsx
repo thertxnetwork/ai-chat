@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export const TypingIndicator: React.FC = () => {
   return (
     <View style={styles.container}>
+      <View style={styles.aiIconContainer}>
+        <Ionicons name="chatbubbles" size={16} color="#6366F1" />
+      </View>
       <View style={styles.bubble}>
         <View style={styles.dotsContainer}>
           <View style={[styles.dot, styles.dot1]} />
@@ -18,16 +22,27 @@ export const TypingIndicator: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginVertical: 8,
+    marginVertical: 12,
     marginHorizontal: 16,
-    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  aiIconContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    backgroundColor: '#EEF2FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+    marginTop: 4,
   },
   bubble: {
-    backgroundColor: '#F0F0F0',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 20,
-    borderBottomLeftRadius: 4,
+    borderRadius: 12,
   },
   dotsContainer: {
     flexDirection: 'row',
@@ -35,10 +50,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#999',
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#9CA3AF',
     marginHorizontal: 2,
   },
   dot1: {

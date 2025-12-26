@@ -54,9 +54,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }
             disabled={!message.trim() || disabled}
           >
             <Ionicons
-              name="send"
-              size={20}
-              color={message.trim() && !disabled ? '#FFFFFF' : '#999'}
+              name="arrow-up"
+              size={18}
+              color={message.trim() && !disabled ? '#FFFFFF' : '#9CA3AF'}
             />
           </TouchableOpacity>
         </View>
@@ -69,36 +69,39 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
-    paddingTop: 8,
-    paddingBottom: 8,
+    borderTopColor: '#E5E7EB',
+    paddingTop: 12,
+    paddingBottom: 12,
     paddingHorizontal: 16,
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F0F0F0',
-    borderRadius: 24,
+    alignItems: 'flex-end',
+    backgroundColor: '#F9FAFB',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 10,
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 15,
     maxHeight: 100,
-    color: '#000',
-    paddingVertical: 4,
+    color: '#111827',
+    paddingVertical: 2,
+    letterSpacing: -0.2,
   },
   sendButton: {
-    backgroundColor: '#007AFF',
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    backgroundColor: '#6366F1',
+    width: 32,
+    height: 32,
+    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
   },
   sendButtonDisabled: {
-    backgroundColor: '#E5E5EA',
+    backgroundColor: '#E5E7EB',
   },
 });

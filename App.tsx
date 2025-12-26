@@ -7,9 +7,9 @@ import {
   Text,
   TouchableOpacity,
   Platform,
+  ScrollView,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { MessageBubble } from './components/MessageBubble';
 import { ChatInput } from './components/ChatInput';
@@ -98,33 +98,26 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       
-      {/* Header with gradient */}
-      <LinearGradient
-        colors={['#667eea', '#764ba2']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
+      {/* Header */}
+      <View style={styles.header}>
         <View style={styles.headerContent}>
           <View style={styles.headerLeft}>
             <View style={styles.aiIconContainer}>
-              <Ionicons name="sparkles" size={24} color="#FFF" />
+              <Ionicons name="chatbubbles" size={20} color="#6366F1" />
             </View>
-            <View>
-              <Text style={styles.headerTitle}>AI Chat</Text>
-              <Text style={styles.headerSubtitle}>Powered by Hugging Face</Text>
-            </View>
+            <Text style={styles.headerTitle}>AI Assistant</Text>
           </View>
           <TouchableOpacity
             style={styles.clearButton}
             onPress={handleClearChat}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="refresh" size={24} color="#FFF" />
+            <Ionicons name="add-circle-outline" size={24} color="#6B7280" />
           </TouchableOpacity>
         </View>
-      </LinearGradient>
+      </View>
 
       {/* Chat messages */}
       <View style={styles.chatContainer}>
@@ -151,9 +144,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   header: {
-    paddingTop: Platform.OS === 'android' ? 40 : 0,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
+    paddingTop: Platform.OS === 'android' ? 8 : 0,
+    paddingBottom: 12,
+    paddingHorizontal: 20,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
   },
   headerContent: {
     flexDirection: 'row',
@@ -165,37 +161,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   aiIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    backgroundColor: '#EEF2FF',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    color: 'rgba(255, 255, 255, 0.8)',
-    marginTop: 2,
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#111827',
+    letterSpacing: -0.3,
   },
   clearButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 4,
   },
   chatContainer: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F9FAFB',
   },
   messageList: {
-    paddingVertical: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 4,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Message } from '../types';
 
 interface MessageBubbleProps {
@@ -8,26 +9,31 @@ interface MessageBubbleProps {
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   return (
-    <View
-      style={[
-        styles.container,
-        message.isUser ? styles.userContainer : styles.aiContainer,
-      ]}
-    >
-      <View
-        style={[
-          styles.bubble,
-          message.isUser ? styles.userBubble : styles.aiBubble,
-        ]}
-      >
-        <Text
+    <View style={styles.container}>
+      {!message.isUser && (
+        <View style={styles.aiIconContainer}>
+          <Ionicons name="chatbubbles" size={16} color="#6366F1" />
+        </View>
+      )}
+      <View style={styles.messageContent}>
+        {!message.isUser && (
+          <Text style={styles.label}>AI Assistant</Text>
+        )}
+        <View
           style={[
-            styles.text,
-            message.isUser ? styles.userText : styles.aiText,
+            styles.bubble,
+            message.isUser ? styles.userBubble : styles.aiBubble,
           ]}
         >
-          {message.text}
-        </Text>
+          <Text
+            style={[
+              styles.text,
+              message.isUser ? styles.userText : styles.aiText,
+            ]}
+          >
+            {message.text}
+          </Text>
+        </View>
         <Text style={styles.timestamp}>
           {message.timestamp.toLocaleTimeString([], {
             hour: '2-digit',
@@ -42,50 +48,60 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginVertical: 8,
+    marginVertical: 12,
     marginHorizontal: 16,
+    alignItems: 'flex-start',
   },
-  userContainer: {
-    justifyContent: 'flex-end',
+  aiIconContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    backgroundColor: '#EEF2FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+    marginTop: 4,
   },
-  aiContainer: {
-    justifyContent: 'flex-start',
+  messageContent: {
+    flex: 1,
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#6B7280',
+    marginBottom: 6,
+    letterSpacing: -0.2,
   },
   bubble: {
-    maxWidth: '75%',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
+    borderRadius: 12,
   },
   userBubble: {
-    backgroundColor: '#007AFF',
-    borderBottomRightRadius: 4,
+    backgroundColor: '#6366F1',
+    alignSelf: 'flex-end',
+    maxWidth: '85%',
   },
   aiBubble: {
-    backgroundColor: '#F0F0F0',
-    borderBottomLeftRadius: 4,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 22,
+    letterSpacing: -0.2,
   },
   userText: {
     color: '#FFFFFF',
   },
   aiText: {
-    color: '#000000',
+    color: '#111827',
   },
   timestamp: {
     fontSize: 11,
-    marginTop: 4,
-    opacity: 0.6,
+    marginTop: 6,
+    color: '#9CA3AF',
+    letterSpacing: -0.1,
   },
 });
