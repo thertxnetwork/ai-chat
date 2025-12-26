@@ -9,9 +9,9 @@ export const COLORS = {
   toffeeBrown: '#9C6644',
   
   // Functional colors
-  background: '#EDE0D4',
+  background: '#FFFFFF',
   surface: '#FFFFFF',
-  surfaceAlt: '#E6CCB2',
+  surfaceAlt: '#F5F5F5',
   primary: '#B08968',
   primaryDark: '#7F5539',
   secondary: '#9C6644',
