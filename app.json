@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ai-chat-temp",
-    "slug": "ai-chat-temp",
+    "name": "AI App",
+    "slug": "ai-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.thertxnetwork.aiapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "package": "com.thertxnetwork.aiapp",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
