@@ -9,13 +9,21 @@ interface MessageBubbleProps {
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   return (
-    <View style={styles.container}>
+    <View 
+      style={[
+        styles.container,
+        message.isUser && styles.userContainer
+      ]}
+    >
       {!message.isUser && (
         <View style={styles.aiIconContainer}>
           <Ionicons name="chatbubbles" size={16} color="#6366F1" />
         </View>
       )}
-      <View style={styles.messageContent}>
+      <View style={[
+        styles.messageContent,
+        message.isUser && styles.userMessageContent
+      ]}>
         {!message.isUser && (
           <Text style={styles.label}>AI Assistant</Text>
         )}
@@ -52,6 +60,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     alignItems: 'flex-start',
   },
+  userContainer: {
+    justifyContent: 'flex-end',
+  },
   aiIconContainer: {
     width: 32,
     height: 32,
@@ -64,6 +75,11 @@ const styles = StyleSheet.create({
   },
   messageContent: {
     flex: 1,
+  },
+  userMessageContent: {
+    flex: 0,
+    maxWidth: '85%',
+    alignItems: 'flex-end',
   },
   label: {
     fontSize: 13,
@@ -80,7 +96,6 @@ const styles = StyleSheet.create({
   userBubble: {
     backgroundColor: '#6366F1',
     alignSelf: 'flex-end',
-    maxWidth: '85%',
   },
   aiBubble: {
     backgroundColor: '#FFFFFF',
