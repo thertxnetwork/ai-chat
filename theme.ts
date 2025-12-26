@@ -27,13 +27,6 @@ export const COLORS = {
   aiBubble: '#FFFFFF',
 };
 
-export const FONTS = {
-  regular: 'Inter_400Regular',
-  medium: 'Inter_500Medium',
-  semiBold: 'Inter_600SemiBold',
-  bold: 'Inter_700Bold',
-};
-
 export const SPACING = {
   xs: 4,
   sm: 8,

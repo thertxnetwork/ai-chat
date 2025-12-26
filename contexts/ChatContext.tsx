@@ -2,6 +2,8 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Message } from '../types';
 
+const TITLE_MAX_LENGTH = 30;
+
 export interface ChatSession {
   id: string;
   title: string;
@@ -21,6 +23,21 @@ interface ChatContextType {
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
+
+const createInitialMessage = (): Message => ({
+  id: '1',
+  text: "Hi! I'm your AI assistant. How can I help you today?",
+  isUser: false,
+  timestamp: new Date(),
+});
+
+const createNewSession = (): ChatSession => ({
+  id: Date.now().toString(),
+  title: 'New Chat',
+  messages: [createInitialMessage()],
+  createdAt: new Date(),
+  updatedAt: new Date(),
+});
 
 export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [sessions, setSessions] = useState<ChatSession[]>([]);
@@ -71,39 +88,13 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const createInitialSession = () => {
-    const newSession: ChatSession = {
-      id: Date.now().toString(),
-      title: 'New Chat',
-      messages: [
-        {
-          id: '1',
-          text: "Hi! I'm your AI assistant. How can I help you today?",
-          isUser: false,
-          timestamp: new Date(),
-        },
-      ],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    const newSession = createNewSession();
     setSessions([newSession]);
     setCurrentSession(newSession);
   };
 
   const createSession = () => {
-    const newSession: ChatSession = {
-      id: Date.now().toString(),
-      title: 'New Chat',
-      messages: [
-        {
-          id: '1',
-          text: "Hi! I'm your AI assistant. How can I help you today?",
-          isUser: false,
-          timestamp: new Date(),
-        },
-      ],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    const newSession = createNewSession();
     setSessions([newSession, ...sessions]);
     setCurrentSession(newSession);
   };
@@ -136,7 +127,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
       messages: [...currentSession.messages, message],
       updatedAt: new Date(),
       title: currentSession.messages.length === 1 && message.isUser
-        ? message.text.slice(0, 30) + (message.text.length > 30 ? '...' : '')
+        ? message.text.slice(0, TITLE_MAX_LENGTH) + (message.text.length > TITLE_MAX_LENGTH ? '...' : '')
         : currentSession.title,
     };
 

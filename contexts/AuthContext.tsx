@@ -45,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const mockUser: User = {
       id: '1',
       email,
-      name: email.split('@')[0],
+      name: email.includes('@') ? email.split('@')[0] : email,
     };
     
     await AsyncStorage.setItem('user', JSON.stringify(mockUser));
