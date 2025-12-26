@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Message } from '../types';
+import { COLORS, SPACING, BORDER_RADIUS } from '../theme';
 
 interface MessageBubbleProps {
   message: Message;
@@ -17,7 +18,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
     >
       {!message.isUser && (
         <View style={styles.aiIconContainer}>
-          <Ionicons name="chatbubbles" size={16} color="#6366F1" />
+          <Ionicons name="chatbubbles" size={16} color={COLORS.primary} />
         </View>
       )}
       <View style={[
@@ -56,8 +57,8 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginVertical: 12,
-    marginHorizontal: 16,
+    marginVertical: SPACING.md,
+    marginHorizontal: SPACING.lg,
     alignItems: 'flex-start',
   },
   userContainer: {
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
   aiIconContainer: {
     width: 32,
     height: 32,
-    borderRadius: 8,
-    backgroundColor: '#EEF2FF',
+    borderRadius: BORDER_RADIUS.sm,
+    backgroundColor: COLORS.surfaceAlt,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginRight: SPACING.md,
     marginTop: 4,
   },
   messageContent: {
@@ -84,23 +85,23 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#6B7280',
-    marginBottom: 6,
+    color: COLORS.textLight,
+    marginBottom: SPACING.xs,
     letterSpacing: -0.2,
   },
   bubble: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+    borderRadius: BORDER_RADIUS.md,
   },
   userBubble: {
-    backgroundColor: '#6366F1',
+    backgroundColor: COLORS.userBubble,
     alignSelf: 'flex-end',
   },
   aiBubble: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.aiBubble,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: COLORS.border,
   },
   text: {
     fontSize: 15,
@@ -108,15 +109,15 @@ const styles = StyleSheet.create({
     letterSpacing: -0.2,
   },
   userText: {
-    color: '#FFFFFF',
+    color: COLORS.textInverse,
   },
   aiText: {
-    color: '#111827',
+    color: COLORS.text,
   },
   timestamp: {
     fontSize: 11,
-    marginTop: 6,
-    color: '#9CA3AF',
+    marginTop: SPACING.xs,
+    color: COLORS.textLight,
     letterSpacing: -0.1,
   },
 });

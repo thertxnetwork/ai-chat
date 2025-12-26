@@ -8,6 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { COLORS, SPACING, BORDER_RADIUS } from '../theme';
 
 const MAX_MESSAGE_LENGTH = 500;
 
@@ -38,7 +39,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }
             value={message}
             onChangeText={setMessage}
             placeholder="Type your message..."
-            placeholderTextColor="#999"
+            placeholderTextColor={COLORS.textLight}
             multiline
             maxLength={MAX_MESSAGE_LENGTH}
             editable={!disabled}
@@ -56,7 +57,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }
             <Ionicons
               name="arrow-up"
               size={18}
-              color={message.trim() && !disabled ? '#FFFFFF' : '#9CA3AF'}
+              color={message.trim() && !disabled ? COLORS.textInverse : COLORS.textLight}
             />
           </TouchableOpacity>
         </View>
@@ -67,41 +68,41 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled = false }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.surface,
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingHorizontal: 16,
+    borderTopColor: COLORS.border,
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.md,
+    paddingHorizontal: SPACING.lg,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    backgroundColor: COLORS.inputBg,
+    borderRadius: BORDER_RADIUS.md,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
-    paddingHorizontal: 16,
+    borderColor: COLORS.border,
+    paddingHorizontal: SPACING.lg,
     paddingVertical: 10,
   },
   input: {
     flex: 1,
     fontSize: 15,
     maxHeight: 100,
-    color: '#111827',
+    color: COLORS.text,
     paddingVertical: 2,
     letterSpacing: -0.2,
   },
   sendButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: COLORS.primary,
     width: 32,
     height: 32,
-    borderRadius: 8,
+    borderRadius: BORDER_RADIUS.sm,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 8,
+    marginLeft: SPACING.sm,
   },
   sendButtonDisabled: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: COLORS.border,
   },
 });
